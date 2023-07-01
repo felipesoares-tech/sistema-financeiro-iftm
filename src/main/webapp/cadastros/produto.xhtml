@@ -32,13 +32,51 @@
             <p:inputText id="inputvalor" value="#{produtoBean.entity.valor}"></p:inputText>
 
             <h:outputLabel for="txt2" value="Fornecedor: "/>
-            <p:selectOneMenu id="txt2" value="#{fornecedorBean.entity}" required="true" label="Text 2" style="width: 12rem">
+            <p:selectOneMenu id="txt2" value="#{produtoBean.entity.fornecedor}" required="false" label="Text 2" style="width: 12rem">
                 <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{fornecedorBean.logic.listar()}" var="fornecedor" itemLabel="#{fornecedor.nome}" itemValue="#{fornecedor}" />
+                <f:selectItems value="#{fornecedorBean.logic.listar()}" var="fornecedor" itemLabel="${fornecedorBean.entity.nome}"  itemValue="#{fornecedorBean.entity}"  />
             </p:selectOneMenu>
             <p:message for="@previous"/>
             <h:outputText value="#{searchView.text2}"/>
 
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:fileUpload mode="advanced"
+                          multiple="false"
+                          sizeLimit="102400" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                          invalidSizeMessage="Maximum file size allowed is 100 KB"
+                          invalidFileMessage="only gif | jpg | jpeg | png is allowed"
+                          update="messages cropperPanel"
+                          listener="#{cropUploaderBean.handleFileUpload}"/>
+
+            <p:outputPanel id="cropperPanel">
+
+                <h:panelGrid columns="1" rendered="#{not empty cropUploaderBean.originalImageFile}">
+
+                    <p:commandButton value="Crop"
+                                     action="#{cropUploaderBean.crop}"
+                                     update="cropped messages" styleClass="my-3"/>
+
+                    <h:panelGrid columns="2" cellpadding="7">
+                        <!--cropUploaderBean.croppedImage  -->
+                        <p:imageCropper
+                            value="#{produtoBean.entity.fotoBanco}" 
+                            id="imageCropper" cache="false"
+                            image="#{cropUploaderBean.image}"
+                            initialCoords="50,50,150,100"
+                            minSize="50,50" maxSize="350,350"/>
+
+                        <p:outputPanel id="cropped">
+                            <p:graphicImage cache="false"
+                                            rendered="#{not empty cropUploaderBean.croppedImage}"
+                                            value="#{cropUploaderBean.cropped}"/>
+                        </p:outputPanel>
+
+                    </h:panelGrid>
+
+
+                </h:panelGrid>
+            </p:outputPanel>
         </h:panelGrid>
         <p:dataTable value="#{produtoBean.entitys}" var="entity" rendered="#{produtoBean.estado == 'PESQUISANDO'}">
             <p:column>
@@ -62,6 +100,8 @@
                 <h:outputText value="#{entity.dataFabricacao}"></h:outputText>
             </p:column>
         </p:dataTable>
+
+
     </h:form>
 
 </ui:composition>

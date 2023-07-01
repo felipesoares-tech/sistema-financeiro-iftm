@@ -12,13 +12,7 @@ public class FornecedorLogic implements GenericLogic<Fornecedor>{
 
     @Inject
     private FornecedorDAO dao;
-    
-    
-    
-    public List<Fornecedor> listarTodas(){
-        return dao.listar();
-    }
-
+       
     @Override
     @Transacional
     public Fornecedor salvar(Fornecedor entity) throws ErroNegocioException, ErroSistemaException {

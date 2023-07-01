@@ -15,10 +15,9 @@ import lombok.Setter;
 @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Fornecedor implements Serializable{
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @EqualsAndHashCode.Include
+   @EqualsAndHashCode.Include
+    private Long id;
     private String nome;
 }
