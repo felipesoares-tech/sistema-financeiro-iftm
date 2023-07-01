@@ -17,9 +17,9 @@ import lombok.Setter;
 public class Marca implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;    
     private String nome;
     
 }

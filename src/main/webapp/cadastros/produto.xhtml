@@ -23,7 +23,7 @@
             <p:datePicker  monthNavigator="true" yearNavigator="true" showWeek="true" value="#{produtoBean.entity.dataFabricacao}" id="inputData"></p:datePicker>
 
             <p:outputLabel value="Marca" for="@next"/>
-            <p:autoComplete id="pojo" value="#{marcaBean.entity.nome}"
+            <p:autoComplete id="pojo" value="#{marca}"
                             completeMethod="#{marcaBean.logic.listar()}"
                             var="marca" itemLabel="#{marca.nome}" itemValue="#{marca}"
                             converter="marcaConverter" forceSelection="true" scrollHeight="250"/>
@@ -32,9 +32,9 @@
             <p:inputText id="inputvalor" value="#{produtoBean.entity.valor}"></p:inputText>
 
             <h:outputLabel for="txt2" value="Fornecedor: "/>
-            <p:selectOneMenu id="txt2" value="#{produtoBean.entity.fornecedor}" required="false" label="Text 2" style="width: 12rem">
+            <p:selectOneMenu id="txt2" value="#{produtoBean.entity.fornecedor}" required="false" label="Text 2" style="width: 12rem" converter="fornecedorConverter">
                 <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{fornecedorBean.logic.listar()}" var="fornecedor" itemLabel="${fornecedorBean.entity.nome}"  itemValue="#{fornecedorBean.entity}"  />
+                <f:selectItems value="#{fornecedorBean.logic.listar()}" var="fornecedor" itemLabel="#{fornecedor.nome}"  itemValue="#{fornecedorBean.entity}"  />
             </p:selectOneMenu>
             <p:message for="@previous"/>
             <h:outputText value="#{searchView.text2}"/>
