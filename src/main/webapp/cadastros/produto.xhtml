@@ -23,7 +23,7 @@
             <p:datePicker  monthNavigator="true" yearNavigator="true" showWeek="true" value="#{produtoBean.entity.dataFabricacao}" id="inputData"></p:datePicker>
 
             <p:outputLabel value="Marca" for="@next"/>
-            <p:autoComplete id="pojo" value="#{marca}"
+            <p:autoComplete id="pojo" value="#{produtoBean.entity.marca}"
                             completeMethod="#{marcaBean.logic.listar()}"
                             var="marca" itemLabel="#{marca.nome}" itemValue="#{marca}"
                             converter="marcaConverter" forceSelection="true" scrollHeight="250"/>
