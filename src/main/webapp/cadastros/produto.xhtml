@@ -33,8 +33,8 @@
 
             <h:outputLabel for="txt2" value="Fornecedor: "/>
             <p:selectOneMenu id="txt2" value="#{produtoBean.entity.fornecedor}" required="false" label="Text 2" style="width: 12rem" converter="fornecedorConverter">
-                <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{fornecedorBean.logic.listar()}" var="fornecedor" itemLabel="#{fornecedor.nome}"  itemValue="#{fornecedorBean.entity}"  />
+                <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+                <f:selectItems value="#{fornecedorBean.logic.listar()}" var="fornecedor" itemLabel="#{fornecedor.nome}"  itemValue="#{fornecedor}"  />
             </p:selectOneMenu>
             <p:message for="@previous"/>
             <h:outputText value="#{searchView.text2}"/>
