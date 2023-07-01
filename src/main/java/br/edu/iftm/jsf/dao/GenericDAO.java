@@ -12,10 +12,10 @@ import javax.persistence.EntityManager;
  * @author danilo
  */
 public abstract class GenericDAO<E, ID> implements Serializable {
-    
+
     @Inject
     private EntityManager manager;
-    
+
     public E salvar(E entity) throws ErroSistemaException {
         try {
             entity = manager.merge(entity);
@@ -24,18 +24,23 @@ public abstract class GenericDAO<E, ID> implements Serializable {
         }
         return entity;
     }
-    
-    public void deletar(ID id){
+
+    public void deletar(ID id) {
         E entity = manager.find(getClassEntity(), id);
         manager.remove(entity);
     }
-    
-    public List<E> listar(){
+
+    public E buscarPorID(ID id) {
+        E entity = manager.find(getClassEntity(), id);
+        return entity;
+    }
+
+    public List<E> listar() {
         List<E> entitys;
-        entitys = manager.createQuery("from "+getClassEntity().getName()).getResultList();
+        entitys = manager.createQuery("from " + getClassEntity().getName()).getResultList();
         return entitys;
     }
-    
+
     public abstract Class<E> getClassEntity();
-    
+
 }

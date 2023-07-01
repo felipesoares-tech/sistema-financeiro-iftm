@@ -9,13 +9,12 @@ import java.util.List;
 import javax.inject.Inject;
 import lombok.Getter;
 
-
 @Getter
 public class ProdutoLogic implements GenericLogic<Produto> {
 
     @Inject
-    private ProdutoDAO dao;    
-    
+    private ProdutoDAO dao;
+
     @Override
     @Transacional
     public Produto salvar(Produto entity) throws ErroNegocioException, ErroSistemaException {
@@ -37,8 +36,7 @@ public class ProdutoLogic implements GenericLogic<Produto> {
         if (entity.getMarca() == null || entity.getMarca().getId() == null) {
             throw new ErroNegocioException("Por favor selecione uma marca");
         }
-        
-        
+
         entity = dao.salvar(entity);
 
         return entity;
@@ -53,5 +51,9 @@ public class ProdutoLogic implements GenericLogic<Produto> {
     @Override
     public List<Produto> listar() throws ErroNegocioException, ErroSistemaException {
         return dao.listar();
+    }
+
+    public Produto buscarPorId(Long id) {
+        return dao.buscarPorID(id);
     }
 }

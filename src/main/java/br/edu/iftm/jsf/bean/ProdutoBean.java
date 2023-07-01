@@ -2,16 +2,21 @@ package br.edu.iftm.jsf.bean;
 
 import br.edu.iftm.jsf.entity.Produto;
 import br.edu.iftm.jsf.logic.ProdutoLogic;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Base64;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 import org.primefaces.util.IOUtils;
 
@@ -35,7 +40,7 @@ public class ProdutoBean extends GenericBean<Produto, ProdutoLogic> {
     public Class<Produto> getClassEntity() {
         return Produto.class;
     }
-
+    
     public void handleFileUpload(FileUploadEvent event) {
         try {
             InputStream inputStream = event.getFile().getInputStream();

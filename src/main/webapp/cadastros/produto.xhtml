@@ -43,7 +43,7 @@
             <h:panelGrid columns="1">
                 <div class="card">
                     <p:fileUpload value="#{produtoBean.file}" mode="advanced" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-                                  accept=".gif,.jpg,.jpeg,.png" listener="#{produtoBean.handleFileUpload}"/>
+                                  accept=".jpeg" listener="#{produtoBean.handleFileUpload}"/>
                 </div>    
             </h:panelGrid>
         </h:panelGrid>
@@ -55,6 +55,9 @@
                 <p:commandButton icon="fa-solid fa-pencil" update="@form"
                                  actionListener="#{produtoBean.editar(entity)}"
                                  ></p:commandButton>
+            </p:column>
+            <p:column headerText="Imagem">
+                <img src="#{request.contextPath}/imagem?id=#{entity.id}" height="50px"></img>
             </p:column>
             <p:column headerText="Nome">
                 <h:outputText value="#{entity.nome}"></h:outputText>
@@ -68,6 +71,7 @@
             <p:column headerText="Data Fabricação">
                 <h:outputText value="#{entity.dataFabricacao}"></h:outputText>
             </p:column>
+
         </p:dataTable>
     </h:form>
 
