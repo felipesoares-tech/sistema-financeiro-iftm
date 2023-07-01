@@ -7,11 +7,15 @@ import br.edu.iftm.jsf.util.exception.ErroNegocioException;
 import br.edu.iftm.jsf.util.exception.ErroSistemaException;
 import java.util.List;
 import javax.inject.Inject;
+import lombok.Getter;
 
+
+@Getter
 public class ProdutoLogic implements GenericLogic<Produto> {
 
     @Inject
-    private ProdutoDAO dao;
+    private ProdutoDAO dao;    
+    
 
     @Override
     @Transacional
@@ -34,8 +38,8 @@ public class ProdutoLogic implements GenericLogic<Produto> {
         if (entity.getMarca() == null || entity.getMarca().getId() == null) {
             throw new ErroNegocioException("Por favor selecione uma marca");
         }
-
         entity = dao.salvar(entity);
+
         return entity;
     }
 
@@ -49,5 +53,4 @@ public class ProdutoLogic implements GenericLogic<Produto> {
     public List<Produto> listar() throws ErroNegocioException, ErroSistemaException {
         return dao.listar();
     }
-
 }

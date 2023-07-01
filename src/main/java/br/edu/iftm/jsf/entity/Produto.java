@@ -35,7 +35,7 @@ public class Produto implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dataFabricacao;
     @Column(name = "foto_banco")
-    private byte fotoBanco;
+    private byte[] fotoBanco;
     @OneToOne
     private Fornecedor fornecedor;
     @OneToOne
