@@ -16,7 +16,6 @@ public class ProdutoLogic implements GenericLogic<Produto> {
     @Inject
     private ProdutoDAO dao;    
     
-
     @Override
     @Transacional
     public Produto salvar(Produto entity) throws ErroNegocioException, ErroSistemaException {
@@ -38,6 +37,8 @@ public class ProdutoLogic implements GenericLogic<Produto> {
         if (entity.getMarca() == null || entity.getMarca().getId() == null) {
             throw new ErroNegocioException("Por favor selecione uma marca");
         }
+        
+        
         entity = dao.salvar(entity);
 
         return entity;

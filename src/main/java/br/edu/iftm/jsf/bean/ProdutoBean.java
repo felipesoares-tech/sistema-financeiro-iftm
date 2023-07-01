@@ -23,7 +23,7 @@ public class ProdutoBean extends GenericBean<Produto, ProdutoLogic> {
 
     @Inject
     private ProdutoLogic logic;
-    
+
     private UploadedFile file;
 
     private byte[] imagem;
@@ -41,7 +41,10 @@ public class ProdutoBean extends GenericBean<Produto, ProdutoLogic> {
     public void handleFileUpload(FileUploadEvent event) {
         try {
             InputStream inputStream = event.getFile().getInputStream();
-            imagem = IOUtils.toByteArray(inputStream);            
+            imagem = IOUtils.toByteArray(inputStream);
+
+            Produto produto = getEntity();
+            produto.setFotoBanco(imagem);
         } catch (IOException e) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Erro ao carregar a imagem");
             FacesContext.getCurrentInstance().addMessage(null, message);
