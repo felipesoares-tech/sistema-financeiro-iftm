@@ -1,4 +1,4 @@
-import br.edu.iftm.imobiliaria.util.FileUtil;
+
 import br.edu.iftm.jsf.entity.Produto;
 import br.edu.iftm.jsf.logic.ProdutoLogic;
 import br.edu.iftm.jsf.util.MimeTypes;
@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.tika.Tika;
 
 @WebServlet(name = "ImagemServlet", urlPatterns = {"/imagem"})
 public class ImagemServlet extends HttpServlet {
@@ -34,8 +35,9 @@ public class ImagemServlet extends HttpServlet {
         }
 
         byte[] imagemBytes = produto.getFotoBanco();
-        String mimeType = MimeTypes.getMimeType("jpeg"); 
-
+        Tika tika = new Tika();
+        String detectedMimeType = tika.detect(produto.getFotoBanco());
+        String mimeType = MimeTypes.getMimeType(detectedMimeType);
         response.setContentType(mimeType);
         response.setContentLength(imagemBytes.length);
 

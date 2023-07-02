@@ -43,7 +43,7 @@
             <h:panelGrid columns="1">
                 <div class="card">
                     <p:fileUpload value="#{produtoBean.file}" mode="advanced" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-                                  accept=".jpeg" listener="#{produtoBean.handleFileUpload}"/>
+                                  accept=".gif,.jpg,.jpeg,.png" listener="#{produtoBean.handleFileUpload}"/>
                 </div>    
             </h:panelGrid>
         </h:panelGrid>
