@@ -24,9 +24,10 @@
 
             <p:outputLabel value="Marca" for="@next"/>
             <p:autoComplete id="pojo" value="#{produtoBean.entity.marca}"
-                            completeMethod="#{marcaBean.logic.listar()}"
+                            completeMethod="#{marcaBean.logic.pesquisaLike}"
                             var="marca" itemLabel="#{marca.nome}" itemValue="#{marca}"
-                            converter="marcaConverter" forceSelection="true" scrollHeight="250"/>
+                            converter="marcaConverter" forceSelection="true" scrollHeight="250" queryDelay="500"/>
+
 
             <p:outputLabel value="Valor" for="inputvalor"></p:outputLabel>
             <p:inputText id="inputvalor" value="#{produtoBean.entity.valor}"></p:inputText>
