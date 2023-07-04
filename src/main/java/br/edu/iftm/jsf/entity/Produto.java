@@ -42,5 +42,10 @@ public class Produto implements Serializable{
     private Fornecedor fornecedor;
     @OneToOne
     private Marca marca;
-    
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_vencimento")
+    private Date dataVencimento;
+    @Column(name = "quantidade_estoque")
+    private Integer quantidadeEstoque;
+        
 }

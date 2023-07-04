@@ -10,7 +10,7 @@
 
     <h:form enctype="multipart/form-data">
         <sf:crudToolbar crudBean="#{produtoBean}">
-            <p:button value="Relatório"></p:button>
+            <p:commandButton value="Relatório" actionListener="#{produtoBean.logic.relatorioProduto()}"></p:commandButton>
         </sf:crudToolbar>
         <h:panelGrid columns="2" rendered="#{produtoBean.estado != 'PESQUISANDO'}">
             <p:outputLabel value="Nome" for="inputNome"></p:outputLabel>
@@ -21,7 +21,10 @@
 
             <p:outputLabel value="Data Fabricação" for="inputData"></p:outputLabel>
             <p:datePicker  monthNavigator="true" yearNavigator="true" showWeek="true" value="#{produtoBean.entity.dataFabricacao}" id="inputData"></p:datePicker>
-
+            
+            <p:outputLabel value="Data Vencimento" for="inputData2"></p:outputLabel>
+            <p:datePicker  monthNavigator="true" yearNavigator="true" showWeek="true" value="#{produtoBean.entity.dataVencimento}" id="inputData2"></p:datePicker>
+            
             <p:outputLabel value="Marca" for="@next"/>
             <p:autoComplete id="pojo" value="#{produtoBean.entity.marca}"
                             completeMethod="#{marcaBean.logic.pesquisaLike}"
@@ -39,7 +42,7 @@
             </p:selectOneMenu>
             <p:message for="@previous"/>
             <h:outputText value="#{searchView.text2}"/>
-
+                      
             <p:growl id="messages" showDetail="true"/>
             <h:panelGrid columns="1">
                 <div class="card">
